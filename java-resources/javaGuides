@@ -1,0 +1,111 @@
+---- Generics ---
+*) introduced in Java 5, Generics are used for creating interfaces, methods, and classes that specify the object type on which they work as a parameter(usually one of the E (element), T (type), K (key), N(number) and V (value)). and provide the following advantages:
+
+- Compile-time type checking is done
+- Casting is eliminated
+- Can implement Generic algorithms
+
+syntax: class class-name<type-parameter-list> {}
+
+* creating and invoking generic methods
+
+class UserInterface {
+    public static <E> void display(E[] list) {    // generic method displaying the elements of an array
+        for (int i = 0; i < list.length; i++)
+            System.out.println(list[i] + ", ");
+    }
+    public static void main(String[] args) {
+    	String[] cities = {"Bengaluru", "Chennai"};
+    	Integer[] codes = {12,14,15};
+    	UserInterface.display(codes);
+    	UserInterface.display(cities);
+    	
+	}
+    
+}
+
+
+--- update method to update student record in DB
+
+public static void update(Record<Student> studentRecord) {
+        // Code to update the records
+}
+
+In this case, Record is a generic class/interface, and Student is the type argument specified for that class/interface.
+** DayScholar and Hosteller are subtype of Student class. 
+Object is super class of all classes
+--- wildcard constructs to denote a family of types---
+
+1. ? extends T - Upper-bounded wildcard which supports types that are T or its sub-types.
+
+public static void update(Record<? extends Student> studentRecord) {
+        // Code to update the records
+}
+The method above will accept parameters of type Record<Student>, Record<DayScholar> and Record<Hosteller>.
+
+2. ? super T - Lower-bounded wildcard which supports types that are T or its super-types.
+
+public static void update(Record<? super DayScholar> studentRecord) {
+        // Code to update the records
+}
+
+The method above will accept parameters of type Record<Student>, Record<DayScholar> and Record<Object>
+
+3. ? - Unbounded wildcard which supports all types.
+
+public static void update(Record<?> studentRecord) {
+        // Code to update the records
+}
+The method mentioned above will accept parameters of type Record<Student>, Record<Professor>, Record<Object>, etc.
+
+
+----- Collections Framework -------
+even though arrays have type check at complie time & can hold objects or primitive types, they have fixed size and cant
+grow or shrink at run time. but LIST can. Collections framework offers many interfaces and classes for manipulating and
+ representing collections.
+---REFER TO IMAGE
+
+- Collections.sort() method can sort the elements of a list in their natural order.
+- like sort(), Collections class contains several other utility methods like reverse(), shuffle(), swap(), etc.
+- Collections.sort() will work on any kind of element which implements the Comparable interface.
+
+public class Course implements Comparable<Course> {
+    public int courseId;
+    public String courseName;
+ 
+    public Course(int courseId, String courseName) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+    }
+ 
+    @Override
+    public int compareTo(Course otherCourse) {
+        return this.courseName.compareTo(otherCourse.courseName);
+    }
+ 
+    @Override
+    public String toString() {
+        return this.courseId + ":" + this.courseName;
+    }
+}
+
+- now we can use sort method on this user-defined class
+- TreeSet and TreeMap classes automatically use the compareTo() method to sort elements when they are added.
+- suppose we want to sort based on courseId not courseName, Since our Course class already 
+  implements compareTo() to sort according to the courseName, we'll need an additional component to define 
+  another comparison logic.
+
+public class CourseIdComparator implements Comparator<Course> {
+    @Override
+    public int compare(Course c1, Course c2) {
+        return c1.courseId - c2.courseId;
+    }
+}
+---
+---
+Collections.sort(courseList, new CourseIdComparator());
+TreeSet<Course> courseSet = new TreeSet<>(new CourseIdComparator());
+
+
+
+
