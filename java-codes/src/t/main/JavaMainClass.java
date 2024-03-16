@@ -1,5 +1,7 @@
 package t.main;
 
+import t.generics.GenericMethods;
+
 public class JavaMainClass {
 
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package t.main;
+package t.generics;
 
 public class GenericMethods<E> {
 	public static <E> void print(E[] list) {
