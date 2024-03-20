@@ -107,5 +107,49 @@ Collections.sort(courseList, new CourseIdComparator());
 TreeSet<Course> courseSet = new TreeSet<>(new CourseIdComparator());
 
 
+>>> REGULAR EXPRESSIONS : java.util.regex <<<
+- a sequence of characters that form a search pattern. mainly used in pattern matching for searching and editing.
+- regex is used by the String class in four methods: matches(), split(), replaceFirst(), replaceAll()
+
+Meta Characters:
+[]	create a character class to match a single character contained within the brackets.
+	'-' can be used to specify a range. E.g: [xyz] matches 'x', 'y' or 'z'. [a-z] matches any letter from 'a' to 'z'.
+
+.	Matches any single character, except a newline. Inside a bracket expression, it becomes a literal dot.
+	e.g. b.t matches "bat", "bRt", "b8t", etc.
+[^]	Matches a single character that is not within the brackets.	[^xyz] matches 'a', '6', etc.
+|	"or" expression to match alternatives.	batlcat matches "bat" or "cat".
+()	Group expressions to form sub-expressions. Also used to capture groups.	Ma(nn|tt)er matches "Matter" or "Manner".
+\n	Matches the nth captured sub-expression group. Groups are numbered from left to right.	([a-z])\\1 matches "dd", "hh", etc.
+
+QUANTIFIERS:
+?	Matches the preceding element zero or one time.		Ba?t matches "Bat" and "Bt".
+*	Matches the preceding element zero or more times.	10*1 matches "11","1001",etc.
++	Matches the preceding element one or more times.	10+1 matches "101","1001",etc.
+{m}	Matches the preceding element exactly m times.		10{4}1 matches "100001".
+{m,}	Matches the preceding element m or more times.		10{3,}1 matches "10001", "1000001", "100000001", etc.
+{m,n}	Matches the preceding element Minimum m and Maximum n times.	xy{2,3}z matches "xyyz","xyyyz".
+
+Predefined Character Classes
+\w	Alphanumeric characters and the underscores	[A-Za-z0-9_]
+\W	Non-word characters				[^A-Za-z0-9_]
+\d	Digits						[0-9]
+\D	Non-digits					[^0-9]
+\s	Whitespace characters				[\t\n\f\r]
+\S	Non-whitespace characters			[^\t\n\f\r]
+
+Note: "\w" is a metacharacter. But '\' is an escape character in Java. Therefore, 
+with another backslash, we have to escape it. Ex: "[ \\w]+ ".
+
+public boolean validateName(String name) {
+    Pattern regex = Pattern.compile("([A-Za-z]+\\s?)+");
+    Matcher nameMatcher = regex.matcher(name.trim());
+    return nameMatcher.matches();
+}
+
+
+
+
+
 
 

@@ -1,6 +1,7 @@
 package t.main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.TreeSet;
 import t.collection.Student;
 import t.collection.StudentIdComparator;
 import t.generics.GenericMethods;
+import t.regex.RegEx;
 
 public class JavaMainClass {
 
@@ -62,6 +64,11 @@ public class JavaMainClass {
 		for(Student s:sortedStudent2) {
 			System.out.println(s.toString());
 		}
+		
+		System.out.println("\nRegEx: validating name");
+		System.out.println(RegEx.validateName("&"));
+		System.out.println("\nRegEx: validating SSN");
+		System.out.println(RegEx.validateSSN("123-85-3456")); //123-85-3456 correct format
 		
 	}
 
