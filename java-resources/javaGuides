@@ -148,7 +148,15 @@ public boolean validateName(String name) {
 }
 
 
-
+>>>>> I/O Stream API <<<<<<
+Stream type:
+a) Byte stream - works with image, audio, video ... access files byte by byte(8bits)
+   Abstract classes of stream: InputStream OutputStream (from java.io)
+b) Character stream - work with files containing Unicode characters which may be represented by two or more bytes.
+   It accesses the file character by character
+   Abstract classes of stream: Reader  & Writer
+* PrintStream is the most commonly used System.out type
+... 
 
 
 
