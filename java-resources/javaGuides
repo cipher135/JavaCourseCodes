@@ -159,5 +159,31 @@ b) Character stream - work with files containing Unicode characters which may be
 ... 
 
 
+---- Memory Management & Garbage Collection in Java
+The purpose of the new keyword is to allocate memory.
+
+- Stack memory and Heap memory is the two divisions in which memory is allocated to a Java application.
+- Stack memory contains all the local variables, local references, and method invocations.
+- All objects and arrays are stored in the heap memory.
+- All instance variables within an object are stored in the heap as part of the memory allocated to that object.
+
+** The automatic de-allocation of the memory is done by the garbage collector in Java.
+
+The garbage collector will free memory occupied by an object under three conditions:
+
+1. When the reference of the object is set to null.
+2. When the reference of the object is set to some new object such that no reference points to the previous object. 
+   In this class, the un-referenced previous object will be garbage collected.
+3. When a reference is local to some method then it will be removed from the Stack as soon as the method is executed.
+   If this reference is pointing to an object, that object will also be garbage collected.
+
+** The finalize method written in a Java class is called garbage collection.
+ 
+ The finalize method is used when certain objects are required to perform some action before they are destroyed.
+ By overriding this method, we can define specific actions that will occur when an object is just about to be reclaimed 
+ by the garbage collector. 
+
+
+
 
 
